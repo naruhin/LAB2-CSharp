@@ -16,15 +16,15 @@ namespace WindowsFormsApp3
             int y1, int y2, int y3, int y4,
             string title = "T")
         {
-            this.title = title;
-            this.x1 = x1;
-            this.x2 = x2;
-            this.x3 = x3;
-            this.x4 = x4;
-            this.y1 = y1;
-            this.y2 = y2;
-            this.y3 = y3;
-            this.y4 = y4;
+            this.Title = title;
+            this.X1 = x1;
+            this.X2 = x2;
+            this.X3 = x3;
+            this.X4 = x4;
+            this.Y1 = y1;
+            this.Y2 = y2;
+            this.Y3 = y3;
+            this.Y4 = y4;
         }
 
 
@@ -34,7 +34,7 @@ namespace WindowsFormsApp3
             bool check = false;
             
             if ((Math.Pow(base.DiagonalAC(), 2) + Math.Pow(base.DiagonalBD(), 2) == 2 * base.SegmentBC() * base.SegmentAD() + Math.Pow(base.SegmentAB(), 2) + Math.Pow(base.SegmentCD(), 2))
-                || (y1 == y4 && y2 == y3) || (x1 == x2 && x3 == x4))
+                || (Y1 == Y4 && Y2 == Y3) || (X1 == X2 && X3 == X4))
                 check = true;
 
             return check;
@@ -42,10 +42,10 @@ namespace WindowsFormsApp3
 
         new public string ToString()
         {
-            return this.title + " \n A(" + this.x1 + ", " + this.y1 + ")\n" +
-                " B(" + this.x2 + ", " + this.y2 + ")\n" +
-                " C(" + this.x3 + ", " + this.y3 + ")\n" +
-                " D(" + this.x4 + ", " + this.y4 + ")\n\n" +
+            return this.Title + " \n A(" + this.X1 + ", " + this.Y1 + ")\n" +
+                " B(" + this.X2 + ", " + this.Y2 + ")\n" +
+                " C(" + this.X3 + ", " + this.Y3 + ")\n" +
+                " D(" + this.X4 + ", " + this.Y4 + ")\n\n" +
                 " \n Side 'a'(BC) = " + base.SegmentBC() + " \n" +
                 " Side 'b'(AD) = " + base.SegmentAD() + "\n" +
                 " Side 'c'(AB) = " + base.SegmentAB() + "\n" +

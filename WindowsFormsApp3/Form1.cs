@@ -12,8 +12,8 @@ namespace WindowsFormsApp3
 {
     public partial class Form1 : Form
     {
-        int N = 5;
-        int M = 5;
+        int N = 3;
+        int M = 3;
         int i = 0;
         int j = 0;
         Quadrangle[] quadrangle;
@@ -34,15 +34,15 @@ namespace WindowsFormsApp3
             if (i < N)
             {
                 quadrangle[i] = new Quadrangle();
-                quadrangle[i].title = txtQuadrangleTitle.Text;
-                quadrangle[i].x1 = Convert.ToInt32(txtX1.Text);
-                quadrangle[i].x2 = Convert.ToInt32(txtX2.Text);
-                quadrangle[i].x3 = Convert.ToInt32(txtX3.Text);
-                quadrangle[i].x4 = Convert.ToInt32(txtX4.Text);
-                quadrangle[i].y1 = Convert.ToInt32(txtY1.Text);
-                quadrangle[i].y2 = Convert.ToInt32(txtY2.Text);
-                quadrangle[i].y3 = Convert.ToInt32(txtY3.Text);
-                quadrangle[i].y4 = Convert.ToInt32(txtY4.Text);
+                quadrangle[i].Title = txtQuadrangleTitle.Text;
+                quadrangle[i].X1 = Convert.ToInt32(txtX1.Text);
+                quadrangle[i].X2 = Convert.ToInt32(txtX2.Text);
+                quadrangle[i].X3 = Convert.ToInt32(txtX3.Text);
+                quadrangle[i].X4 = Convert.ToInt32(txtX4.Text);
+                quadrangle[i].Y1 = Convert.ToInt32(txtY1.Text);
+                quadrangle[i].Y2 = Convert.ToInt32(txtY2.Text);
+                quadrangle[i].Y3 = Convert.ToInt32(txtY3.Text);
+                quadrangle[i].Y4 = Convert.ToInt32(txtY4.Text);
             }
             else
             {
@@ -58,15 +58,15 @@ namespace WindowsFormsApp3
             if (j < M)
             {
                 trapeze[j] = new Trapeze();
-                trapeze[j].title = txtTrapezeTitle.Text;
-                trapeze[j].x1 = Convert.ToInt32(txtTX1.Text);
-                trapeze[j].x2 = Convert.ToInt32(txtTX2.Text);
-                trapeze[j].x3 = Convert.ToInt32(txtTX3.Text);
-                trapeze[j].x4 = Convert.ToInt32(txtTX4.Text);
-                trapeze[j].y1 = Convert.ToInt32(txtTY1.Text);
-                trapeze[j].y2 = Convert.ToInt32(txtTY2.Text);
-                trapeze[j].y3 = Convert.ToInt32(txtTY3.Text);
-                trapeze[j].y4 = Convert.ToInt32(txtTY4.Text);
+                trapeze[j].Title = txtTrapezeTitle.Text;
+                trapeze[j].X1 = Convert.ToInt32(txtTX1.Text);
+                trapeze[j].X2 = Convert.ToInt32(txtTX2.Text);
+                trapeze[j].X3 = Convert.ToInt32(txtTX3.Text);
+                trapeze[j].X4 = Convert.ToInt32(txtTX4.Text);
+                trapeze[j].Y1 = Convert.ToInt32(txtTY1.Text);
+                trapeze[j].Y2 = Convert.ToInt32(txtTY2.Text);
+                trapeze[j].Y3 = Convert.ToInt32(txtTY3.Text);
+                trapeze[j].Y4 = Convert.ToInt32(txtTY4.Text);
             }
             else
             {

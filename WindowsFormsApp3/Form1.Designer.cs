@@ -562,18 +562,18 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(9, 32);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(91, 13);
+            this.label31.Size = new System.Drawing.Size(99, 13);
             this.label31.TabIndex = 62;
-            this.label31.Text = "Введите 5 фигур";
+            this.label31.Text = "Введите 3 фигуры";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(275, 32);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(91, 13);
+            this.label32.Size = new System.Drawing.Size(99, 13);
             this.label32.TabIndex = 63;
-            this.label32.Text = "Введите 5 фигур";
+            this.label32.Text = "Введите 3 фигуры";
             // 
             // Form1
             // 
