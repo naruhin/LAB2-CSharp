@@ -86,15 +86,23 @@
             this.richTextBoxQuadrangle2 = new System.Windows.Forms.RichTextBox();
             this.richTextBoxTrapeze2 = new System.Windows.Forms.RichTextBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.numUpDownQ = new System.Windows.Forms.NumericUpDown();
+            this.btnSetN = new System.Windows.Forms.Button();
+            this.btnSetM = new System.Windows.Forms.Button();
+            this.numUpDownT = new System.Windows.Forms.NumericUpDown();
             this.label32 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownQ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownT)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(53, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 13);
+            this.label1.Size = new System.Drawing.Size(145, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Четырёхугольник";
             // 
@@ -508,9 +516,10 @@
             // label30
             // 
             this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label30.Location = new System.Drawing.Point(362, 9);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(56, 13);
+            this.label30.Size = new System.Drawing.Size(81, 18);
             this.label30.TabIndex = 26;
             this.label30.Text = "Трапеция";
             // 
@@ -560,27 +569,107 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(9, 32);
+            this.label31.Location = new System.Drawing.Point(9, 34);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(99, 13);
+            this.label31.Size = new System.Drawing.Size(77, 13);
             this.label31.TabIndex = 62;
-            this.label31.Text = "Введите 3 фигуры";
+            this.label31.Text = "Кол-во фигур:";
+            // 
+            // numUpDownQ
+            // 
+            this.numUpDownQ.Location = new System.Drawing.Point(129, 32);
+            this.numUpDownQ.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.numUpDownQ.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numUpDownQ.Name = "numUpDownQ";
+            this.numUpDownQ.Size = new System.Drawing.Size(38, 20);
+            this.numUpDownQ.TabIndex = 64;
+            this.numUpDownQ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btnSetN
+            // 
+            this.btnSetN.Location = new System.Drawing.Point(173, 32);
+            this.btnSetN.Name = "btnSetN";
+            this.btnSetN.Size = new System.Drawing.Size(75, 20);
+            this.btnSetN.TabIndex = 65;
+            this.btnSetN.Text = "Set";
+            this.btnSetN.UseVisualStyleBackColor = true;
+            this.btnSetN.Click += new System.EventHandler(this.btnSetN_Click);
+            // 
+            // btnSetM
+            // 
+            this.btnSetM.Location = new System.Drawing.Point(435, 32);
+            this.btnSetM.Name = "btnSetM";
+            this.btnSetM.Size = new System.Drawing.Size(75, 20);
+            this.btnSetM.TabIndex = 68;
+            this.btnSetM.Text = "Set";
+            this.btnSetM.UseVisualStyleBackColor = true;
+            this.btnSetM.Click += new System.EventHandler(this.btnSetM_Click);
+            // 
+            // numUpDownT
+            // 
+            this.numUpDownT.Location = new System.Drawing.Point(391, 32);
+            this.numUpDownT.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.numUpDownT.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numUpDownT.Name = "numUpDownT";
+            this.numUpDownT.Size = new System.Drawing.Size(38, 20);
+            this.numUpDownT.TabIndex = 67;
+            this.numUpDownT.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(275, 32);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(99, 13);
-            this.label32.TabIndex = 63;
-            this.label32.Text = "Введите 3 фигуры";
+            this.label32.Size = new System.Drawing.Size(77, 13);
+            this.label32.TabIndex = 66;
+            this.label32.Text = "Кол-во фигур:";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(14, 517);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(498, 34);
+            this.btnClear.TabIndex = 69;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 527);
+            this.BackColor = System.Drawing.Color.MintCream;
+            this.ClientSize = new System.Drawing.Size(527, 563);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnSetM);
+            this.Controls.Add(this.numUpDownT);
             this.Controls.Add(this.label32);
+            this.Controls.Add(this.btnSetN);
+            this.Controls.Add(this.numUpDownQ);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.richTextBoxTrapeze2);
             this.Controls.Add(this.richTextBoxQuadrangle2);
@@ -641,6 +730,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Lab2";
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownQ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -705,7 +796,12 @@
         private System.Windows.Forms.RichTextBox richTextBoxQuadrangle2;
         private System.Windows.Forms.RichTextBox richTextBoxTrapeze2;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.NumericUpDown numUpDownQ;
+        private System.Windows.Forms.Button btnSetN;
+        private System.Windows.Forms.Button btnSetM;
+        private System.Windows.Forms.NumericUpDown numUpDownT;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
