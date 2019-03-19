@@ -12,14 +12,19 @@ namespace WindowsFormsApp3
 {
     public partial class Form1 : Form
     {
-        int N = 3;
-        int M = 3;
+        private static int n = 3;
+        private static int m = 3;
         int i = 0;
         int j = 0;
         Quadrangle[] quadrangle;
 
         Trapeze[] trapeze;
-        
+
+        public int I { get => i; set => i = value; }
+        public int J { get => j; set => j = value; }
+        public static int N { get => n; set => n = value; }
+        public static int M { get => m; set => m = value; }
+
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +33,7 @@ namespace WindowsFormsApp3
             trapeze = new Trapeze[M];
         }
 
+        
         private void btnEnter_Click(object sender, EventArgs e)
         {
             
@@ -117,5 +123,7 @@ namespace WindowsFormsApp3
             }
 
         }
+
+       
     }
 }
