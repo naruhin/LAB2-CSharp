@@ -23,8 +23,6 @@ namespace WindowsFormsApp3
         public static int M { get => m; set => m = value; }
 
         Quadrangle[] quadrangle;
-        
-       
         Trapeze[] trapeze;
 
         public Form1()
@@ -32,13 +30,15 @@ namespace WindowsFormsApp3
             InitializeComponent();
         }
 
+        //Установка размерности массива quadrabgle
         private void btnSetN_Click(object sender, EventArgs e)
         {
             quadrangle = new Quadrangle[Convert.ToInt32(numUpDownQ.Value)];
-            if (quadrangle != null)
+            if (quadrangle != null) //Если массив не пустой - вывести сообщение об успехе
                 MessageBox.Show("Отлично!Можете вводить данные!");
         }
 
+        //Установка размерности массива trapeze
         private void btnSetM_Click(object sender, EventArgs e)
         {   
             trapeze = new Trapeze[Convert.ToInt32(numUpDownT.Value)];
@@ -46,6 +46,7 @@ namespace WindowsFormsApp3
                 MessageBox.Show("Отлично!Можете вводить данные!");
         }
 
+        //Очистка полей и массивов
         private void button1_Click(object sender, EventArgs e)
         {
             quadrangle = null;
@@ -57,6 +58,7 @@ namespace WindowsFormsApp3
             MessageBox.Show("Поля и хранилище очищены!");
         }
 
+        //Заполнение массива quadrangle
         private void btnEnter_Click(object sender, EventArgs e)
         {
             if(quadrangle != null)
@@ -83,13 +85,9 @@ namespace WindowsFormsApp3
                 i++;
             }
             else
-            {
                 MessageBox.Show("Неопределенно количество фигур!");
-            }
-            
-            
         }
-
+        //Заполнение массива trapeze
         private void btnEnterT_Click(object sender, EventArgs e)
         {
             if(trapeze != null)
@@ -116,17 +114,13 @@ namespace WindowsFormsApp3
                 j++;
             }
             else
-            {
                 MessageBox.Show("Нопределенно количество фигур!");
-            }
-            
-            
         }
-
+        //Поиск фигуры с минимальной площадью.
         private void btnMinSquare_Click(object sender, EventArgs e)
         {
             double min = 10000;
-
+            //Поиск
             for (int i = 0; i < quadrangle.Length; i++)
             {
                 if (quadrangle[i].GetSquare() > 0 && quadrangle[i].GetSquare() < min)
@@ -134,7 +128,7 @@ namespace WindowsFormsApp3
                     min = quadrangle[i].GetSquare();
                 }
             }
-
+            //Вывод в текстовое поле
             for (int i = 0; i < quadrangle.Length; i++)
             {
                 if (min == quadrangle[i].GetSquare())
@@ -143,17 +137,14 @@ namespace WindowsFormsApp3
                 }
             }
         }
-
+        //Поиск трапеции с максимальной средней линией
         private void btnMaxMiddleLine_Click(object sender, EventArgs e)
         {
             double max = 0;
             for(int j = 0; j < trapeze.Length; j++)
             {
-                if(trapeze[j].IsTrapeze() == true && trapeze[j].MiddleLine() > max)
-                {
+                if(trapeze[j].IsTrapeze() == true && trapeze[j].MiddleLine() > max)  
                     max = trapeze[j].MiddleLine();
-                    
-                }
             }
             for(int j = 0;j < trapeze.Length; j++)
             {
