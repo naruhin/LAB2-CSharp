@@ -12,15 +12,13 @@ namespace WindowsFormsApp3
 {
     public partial class Form1 : Form
     {
-        private static int n;
-        private static int m;
-        int i = 0;
-        int j = 0;
+      
+        private int i = 0;
+        private int j = 0;
         
         public int I { get => i; set => i = value; }
         public int J { get => j; set => j = value; }
-        public static int N { get => n; set => n = value; }
-        public static int M { get => m; set => m = value; }
+       
 
         Quadrangle[] quadrangle;
         Trapeze[] trapeze;
@@ -46,43 +44,36 @@ namespace WindowsFormsApp3
                 MessageBox.Show("Отлично!Можете вводить данные!");
         }
 
-        //Очистка полей и массивов
-        private void button1_Click(object sender, EventArgs e)
-        {
-            quadrangle = null;
-            trapeze = null;
-            richTextBoxQuadrangle.Text = " ";
-            richTextBoxQuadrangle2.Text = " ";
-            richTextBoxTrapeze.Text = " ";
-            richTextBoxTrapeze2.Text = " ";
-            MessageBox.Show("Поля и хранилище очищены!");
-        }
+       
 
         //Заполнение массива quadrangle
         private void btnEnter_Click(object sender, EventArgs e)
         {
             if(quadrangle != null)
             {
-                if (i < quadrangle.Length)
+                if (I < quadrangle.Length)
                 {
-                    quadrangle[i] = new Quadrangle();
-                    quadrangle[i].Title = txtQuadrangleTitle.Text;
-                    quadrangle[i].X1 = Convert.ToInt32(txtX1.Text);
-                    quadrangle[i].X2 = Convert.ToInt32(txtX2.Text);
-                    quadrangle[i].X3 = Convert.ToInt32(txtX3.Text);
-                    quadrangle[i].X4 = Convert.ToInt32(txtX4.Text);
-                    quadrangle[i].Y1 = Convert.ToInt32(txtY1.Text);
-                    quadrangle[i].Y2 = Convert.ToInt32(txtY2.Text);
-                    quadrangle[i].Y3 = Convert.ToInt32(txtY3.Text);
-                    quadrangle[i].Y4 = Convert.ToInt32(txtY4.Text);
+                    quadrangle[I] = new Quadrangle();
+                    
+                    quadrangle[I].Title = txtQuadrangleTitle.Text;
+
+                    
+                    quadrangle[I].X1 = Convert.ToInt32(txtX1.Text);
+                    quadrangle[I].X2 = Convert.ToInt32(txtX2.Text);
+                    quadrangle[I].X3 = Convert.ToInt32(txtX3.Text);
+                    quadrangle[I].X4 = Convert.ToInt32(txtX4.Text);
+                    quadrangle[I].Y1 = Convert.ToInt32(txtY1.Text);
+                    quadrangle[I].Y2 = Convert.ToInt32(txtY2.Text);
+                    quadrangle[I].Y3 = Convert.ToInt32(txtY3.Text);
+                    quadrangle[I].Y4 = Convert.ToInt32(txtY4.Text);
                 }
                 else
                 {
                     MessageBox.Show("Вы ввели все фигуры!");
-                    i = 0;
+                    I = 0;
                 }
-                richTextBoxQuadrangle.Text = quadrangle[i].ToString();
-                i++;
+                richTextBoxQuadrangle.Text = quadrangle[I].ToString();
+                I++;
             }
             else
                 MessageBox.Show("Неопределенно количество фигур!");
@@ -92,26 +83,26 @@ namespace WindowsFormsApp3
         {
             if(trapeze != null)
             {
-                if (j < trapeze.Length)
+                if (J < trapeze.Length)
                 {
-                    trapeze[j] = new Trapeze();
-                    trapeze[j].Title = txtTrapezeTitle.Text;
-                    trapeze[j].X1 = Convert.ToInt32(txtTX1.Text);
-                    trapeze[j].X2 = Convert.ToInt32(txtTX2.Text);
-                    trapeze[j].X3 = Convert.ToInt32(txtTX3.Text);
-                    trapeze[j].X4 = Convert.ToInt32(txtTX4.Text);
-                    trapeze[j].Y1 = Convert.ToInt32(txtTY1.Text);
-                    trapeze[j].Y2 = Convert.ToInt32(txtTY2.Text);
-                    trapeze[j].Y3 = Convert.ToInt32(txtTY3.Text);
-                    trapeze[j].Y4 = Convert.ToInt32(txtTY4.Text);
+                    trapeze[J] = new Trapeze();
+                    trapeze[J].Title = txtTrapezeTitle.Text;
+                    trapeze[J].X1 = Convert.ToInt32(txtTX1.Text);
+                    trapeze[J].X2 = Convert.ToInt32(txtTX2.Text);
+                    trapeze[J].X3 = Convert.ToInt32(txtTX3.Text);
+                    trapeze[J].X4 = Convert.ToInt32(txtTX4.Text);
+                    trapeze[J].Y1 = Convert.ToInt32(txtTY1.Text);
+                    trapeze[J].Y2 = Convert.ToInt32(txtTY2.Text);
+                    trapeze[J].Y3 = Convert.ToInt32(txtTY3.Text);
+                    trapeze[J].Y4 = Convert.ToInt32(txtTY4.Text);
                 }
                 else
                 {
                     MessageBox.Show("Вы ввели все фигуры!");
-                    j = 0;
+                    J = 0;
                 }
-                richTextBoxTrapeze.Text = (trapeze[j].IsTrapeze() ? "\nTrapeze - " + trapeze[j].ToString() : "NOT trapeze");
-                j++;
+                richTextBoxTrapeze.Text = (trapeze[J].IsTrapeze() ? "\nTrapeze - " + trapeze[J].ToString() : "NOT trapeze");
+                J++;
             }
             else
                 MessageBox.Show("Нопределенно количество фигур!");

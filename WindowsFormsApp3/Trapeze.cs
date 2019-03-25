@@ -33,8 +33,7 @@ namespace WindowsFormsApp3
         {
             bool check = false;
             
-            if ((Math.Pow(base.DiagonalAC(), 2) + Math.Pow(base.DiagonalBD(), 2) == 2 * base.SegmentBC() * base.SegmentAD() + Math.Pow(base.SegmentAB(), 2) + Math.Pow(base.SegmentCD(), 2))
-                || (Y1 == Y4 && Y2 == Y3) || (X1 == X2 && X3 == X4))
+            if ((Y1 == Y4 && Y2 == Y3) || (X1 == X2 && X3 == X4))
                 check = true;
 
             return check;
