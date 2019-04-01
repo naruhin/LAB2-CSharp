@@ -28,20 +28,46 @@ namespace WindowsFormsApp3
             InitializeComponent();
         }
 
-        //Установка размерности массива quadrabgle
+        //Установка размерности массива quadrangle
         private void btnSetN_Click(object sender, EventArgs e)
         {
-            quadrangle = new Quadrangle[Convert.ToInt32(numUpDownQ.Value)];
-            if (quadrangle != null) //Если массив не пустой - вывести сообщение об успехе
-                MessageBox.Show("Отлично!Можете вводить данные!");
+           
+           
+
+            if(quadrangle == null)
+            {
+                quadrangle = new Quadrangle[Convert.ToInt32(numUpDownQ.Value)];
+                if (quadrangle != null) //Если массив не пустой - вывести сообщение об успехе
+                    MessageBox.Show("Отлично!Можете вводить данные!");
+            }
+            else
+            {
+                Array.Resize<Quadrangle>(ref  quadrangle, Convert.ToInt32(numUpDownQ.Value));
+                if (quadrangle != null) //Если массив не пустой - вывести сообщение об успехе
+                    MessageBox.Show("Размерность изменена!");
+            }
+            
+            
         }
 
         //Установка размерности массива trapeze
         private void btnSetM_Click(object sender, EventArgs e)
-        {   
-            trapeze = new Trapeze[Convert.ToInt32(numUpDownT.Value)];
-            if (trapeze != null)
-                MessageBox.Show("Отлично!Можете вводить данные!");
+        {
+
+            if (trapeze == null)
+            {
+                trapeze = new Trapeze[Convert.ToInt32(numUpDownT.Value)];
+                if (trapeze != null) //Если массив не пустой - вывести сообщение об успехе
+                    MessageBox.Show("Отлично!Можете вводить данные!");
+            }
+            else
+            {
+                Array.Resize<Trapeze>(ref trapeze, Convert.ToInt32(numUpDownT.Value));
+                if (trapeze != null) //Если массив не пустой - вывести сообщение об успехе
+                    MessageBox.Show("Размерность изменена!");
+            }
+
+            
         }
 
        
@@ -56,8 +82,6 @@ namespace WindowsFormsApp3
                     quadrangle[I] = new Quadrangle();
                     
                     quadrangle[I].Title = txtQuadrangleTitle.Text;
-
-                    
                     quadrangle[I].X1 = Convert.ToInt32(txtX1.Text);
                     quadrangle[I].X2 = Convert.ToInt32(txtX2.Text);
                     quadrangle[I].X3 = Convert.ToInt32(txtX3.Text);
@@ -142,6 +166,14 @@ namespace WindowsFormsApp3
                 if(trapeze[j].IsTrapeze() == true && max == trapeze[j].MiddleLine())
                     richTextBoxTrapeze2.Text = "Trapeze with highest middle line:" + trapeze[j].ToString();
             }
+        }
+
+        private void btnClearTxtBoxs_Click(object sender, EventArgs e)
+        {
+            richTextBoxQuadrangle.Text = null;
+            richTextBoxQuadrangle2.Text = null ;
+            richTextBoxTrapeze.Text = null;
+            richTextBoxTrapeze2.Text = null;
         }
 
         

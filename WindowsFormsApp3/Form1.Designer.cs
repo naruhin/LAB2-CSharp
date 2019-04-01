@@ -91,6 +91,7 @@
             this.btnSetM = new System.Windows.Forms.Button();
             this.numUpDownT = new System.Windows.Forms.NumericUpDown();
             this.label32 = new System.Windows.Forms.Label();
+            this.btnClearTxtBoxs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownQ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownT)).BeginInit();
             this.SuspendLayout();
@@ -647,12 +648,23 @@
             this.label32.TabIndex = 66;
             this.label32.Text = "Кол-во фигур:";
             // 
+            // btnClearTxtBoxs
+            // 
+            this.btnClearTxtBoxs.Location = new System.Drawing.Point(14, 517);
+            this.btnClearTxtBoxs.Name = "btnClearTxtBoxs";
+            this.btnClearTxtBoxs.Size = new System.Drawing.Size(496, 37);
+            this.btnClearTxtBoxs.TabIndex = 69;
+            this.btnClearTxtBoxs.Text = "Очистить поля";
+            this.btnClearTxtBoxs.UseVisualStyleBackColor = true;
+            this.btnClearTxtBoxs.Click += new System.EventHandler(this.btnClearTxtBoxs_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
-            this.ClientSize = new System.Drawing.Size(527, 519);
+            this.ClientSize = new System.Drawing.Size(527, 561);
+            this.Controls.Add(this.btnClearTxtBoxs);
             this.Controls.Add(this.btnSetM);
             this.Controls.Add(this.numUpDownT);
             this.Controls.Add(this.label32);
@@ -789,6 +801,7 @@
         private System.Windows.Forms.Button btnSetM;
         private System.Windows.Forms.NumericUpDown numUpDownT;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Button btnClearTxtBoxs;
     }
 }
 
