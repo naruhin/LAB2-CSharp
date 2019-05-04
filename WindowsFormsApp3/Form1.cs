@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,14 +19,24 @@ namespace WindowsFormsApp3
         
         public int I { get => i; set => i = value; }
         public int J { get => j; set => j = value; }
-       
 
+        
         Quadrangle[] quadrangle;
+        Quadrangle[] quadrangleFromFile;
         Trapeze[] trapeze;
+        Trapeze[] trapezeFromFile;
+
+        OpenFileDialog openFileDialog1;
+        SaveFileDialog saveFileDialog1;
 
         public Form1()
         {
             InitializeComponent();
+            openFileDialog1 = new OpenFileDialog();
+            saveFileDialog1 = new SaveFileDialog();
+            btnOpenFile.Click += BtnOpenFile_Click;
+            btnFinish.Click += BtnFinish_Click_1;
+           
         }
 
         //Установка размерности массива quadrangle
@@ -75,8 +86,6 @@ namespace WindowsFormsApp3
             }
         }
 
-       
-
         //Заполнение массива quadrangle
         private void btnEnter_Click(object sender, EventArgs e)
         {
@@ -95,7 +104,7 @@ namespace WindowsFormsApp3
                     quadrangle[I].Y2 = Convert.ToInt32(txtY2.Text);
                     quadrangle[I].Y3 = Convert.ToInt32(txtY3.Text);
                     quadrangle[I].Y4 = Convert.ToInt32(txtY4.Text);
-                    richTextBoxQuadrangle.Text = quadrangle[I].ToString();
+                    richTextBoxQuadrangle.Text = quadrangle[I].ToString() + '\n';
                 }
                 else
                 {
@@ -109,6 +118,7 @@ namespace WindowsFormsApp3
             else
                 MessageBox.Show("Неопределенно количество фигур!");
         }
+        
         //Заполнение массива trapeze
         private void btnEnterT_Click(object sender, EventArgs e)
         {
@@ -126,7 +136,7 @@ namespace WindowsFormsApp3
                     trapeze[J].Y2 = Convert.ToInt32(txtTY2.Text);
                     trapeze[J].Y3 = Convert.ToInt32(txtTY3.Text);
                     trapeze[J].Y4 = Convert.ToInt32(txtTY4.Text);
-                    richTextBoxTrapeze.Text = (trapeze[J].IsTrapeze() ? "\nTrapeze - " + trapeze[J].ToString() : "NOT trapeze");
+                    richTextBoxTrapeze.Text = (trapeze[J].IsTrapeze() ? "\nTrapeze - " + trapeze[J].ToString() : "NOT trapeze") + '\n';
                 }
                 else
                 {
@@ -139,54 +149,100 @@ namespace WindowsFormsApp3
             else
                 MessageBox.Show("Нопределенно количество фигур!");
         }
+        
         //Поиск фигуры с минимальной площадью.
         private void btnMinSquare_Click(object sender, EventArgs e)
         {
-            
-            double min =  quadrangle[0].GetSquare();
-            //Поиск
-            for (int i = 1; i < quadrangle.Length; i++)
+            if(quadrangle != null)
             {
-                if (quadrangle[i].GetSquare() > 0 && quadrangle[i].GetSquare() < min)
+                double min = quadrangle[0].GetSquare();
+                //Поиск
+                for (int i = 1; i < quadrangle.Length; i++)
                 {
-                    min = quadrangle[i].GetSquare();
+                    if (quadrangle[i].GetSquare() > 0 && quadrangle[i].GetSquare() < min)
+                    {
+                        min = quadrangle[i].GetSquare();
+                    }
+                }
+                //Вывод в текстовое поле
+                for (int i = 0; i < quadrangle.Length; i++)
+                {
+                    if (min == quadrangle[i].GetSquare())
+                    {
+                        richTextBoxQuadrangle.Text = "Quadrangle with minimal square:\n" + quadrangle[i].ToString() + '\n';
+                    }
                 }
             }
-            //Вывод в текстовое поле
-            for (int i = 0; i < quadrangle.Length; i++)
+            else if(quadrangleFromFile != null)
             {
-                if (min == quadrangle[i].GetSquare())
+                double min = quadrangleFromFile[0].GetSquare();
+                //Поиск
+                for (int i = 1; i < quadrangleFromFile.Length; i++)
                 {
-                    richTextBoxQuadrangle2.Text = "Quadrangle with minimal square:" + quadrangle[i].ToString();
+                    if (quadrangleFromFile[i].GetSquare() > 0 && quadrangleFromFile[i].GetSquare() < min)
+                    {
+                        min = quadrangleFromFile[i].GetSquare();
+                    }
+                }
+                //Вывод в текстовое поле
+                for (int i = 0; i < quadrangleFromFile.Length; i++)
+                {
+                    if (min == quadrangleFromFile[i].GetSquare())
+                    {
+                        richTextBoxQuadrangle.Text = "Quadrangle with minimal square:\n" + quadrangleFromFile[i].ToString() + '\n';
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Ошибка! Вы не ввели ни одной фигуры!");
+            }
+
+
+
+
         }
+        
         //Поиск трапеции с максимальной средней линией
         private void btnMaxMiddleLine_Click(object sender, EventArgs e)
         {
+            if(trapeze != null)
+            {
+                double max = trapeze[0].MiddleLine();
+                for (int j = 1; j < trapeze.Length; j++)
+                {
+                    if (trapeze[j].IsTrapeze() == true && trapeze[j].MiddleLine() > max)
+                        max = trapeze[j].MiddleLine();
+                }
+                for (int j = 0; j < trapeze.Length; j++)
+                {
+                    if (trapeze[j].IsTrapeze() == true && max == trapeze[j].MiddleLine())
+                        richTextBoxTrapeze.Text = "Trapeze with highest middle line:\n" + trapeze[j].ToString() + '\n';
+                }
+            }
+            else if(trapezeFromFile != null)
+            {
+                double max1 = trapezeFromFile[0].MiddleLine();
+                for (int j = 1; j < trapezeFromFile.Length; j++)
+                {
+                    if (trapezeFromFile[j].IsTrapeze() == true && trapezeFromFile[j].MiddleLine() > max1)
+                        max1 = trapezeFromFile[j].MiddleLine();
+                }
+                for (int j = 0; j < trapezeFromFile.Length; j++)
+                {
+                    if (trapezeFromFile[j].IsTrapeze() == true && max1 == trapezeFromFile[j].MiddleLine())
+                        richTextBoxTrapeze.Text = "Trapeze with highest middle line:\n" + trapezeFromFile[j].ToString() + '\n';
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ошибка! Вы не ввели ни одной фигуры!");
+            }
 
-            double max = trapeze[0].MiddleLine();
-            for(int j = 1; j < trapeze.Length; j++)
-            {
-                if(trapeze[j].IsTrapeze() == true && trapeze[j].MiddleLine() > max)  
-                    max = trapeze[j].MiddleLine();
-            }
-            for(int j = 0;j < trapeze.Length; j++)
-            {
-                if(trapeze[j].IsTrapeze() == true && max == trapeze[j].MiddleLine())
-                    richTextBoxTrapeze2.Text = "Trapeze with highest middle line:" + trapeze[j].ToString();
-            }
         }
 
-        private void btnClearTxtBoxs_Click(object sender, EventArgs e)
-        {
-            richTextBoxQuadrangle.Text = null;
-            richTextBoxQuadrangle2.Text = null ;
-            richTextBoxTrapeze.Text = null;
-            richTextBoxTrapeze2.Text = null;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        //Случайные числа в поля координат четырехугольника
+        private void btnRndQ_Click(object sender, EventArgs e)
         {
             Random  rnd = new Random();
             txtX1.Text = Convert.ToString(rnd.Next(-10, 10));
@@ -198,7 +254,8 @@ namespace WindowsFormsApp3
             txtY3.Text = Convert.ToString(rnd.Next(-10, 10));
             txtY4.Text = Convert.ToString(rnd.Next(-10, 10));
         }
-
+        
+        //Случайные числа в поля координат трапеции
         private void btnRndT_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
@@ -210,6 +267,198 @@ namespace WindowsFormsApp3
             txtTY2.Text = Convert.ToString(rnd.Next(-10, 10));
             txtTY3.Text = Convert.ToString(rnd.Next(-10, 10));
             txtTY4.Text = Convert.ToString(rnd.Next(-10, 10));
+        }
+        
+        //Открытие файла с данными о четырехугольниках 
+        private void BtnOpenFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+
+
+            // получаем выбранный файл
+            string filename = openFileDialog1.FileName;
+
+            FileStream fsR = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            // Создаем двоичный поток для чтения
+            BinaryReader br = new BinaryReader(fsR, Encoding.UTF8);
+
+            //Считываем длину массива и создаём новый массив объектов
+            int length = br.ReadInt32();
+            
+            quadrangleFromFile = new Quadrangle[length];
+
+            //Вывод в текстовое поле информации о фигурах
+            richTextBoxQuadrangle.Text = "Кол-во фигур - " + length + "\n";
+            for (int i = 0;i < length; i++)
+            {
+                quadrangleFromFile[i] = Quadrangle.Read(br);
+                richTextBoxQuadrangle.Text += quadrangleFromFile[i].ToString() + "\n";
+            }
+            
+            // Закрываем потоки
+            br.Close();
+            fsR.Close();
+        }
+
+        //Сохранение в файл данных о четырехуголниках и завершение работы 
+        private void BtnFinish_Click_1(object sender, EventArgs e)
+        {
+            DialogResult rsl = MessageBox.Show("Сохранить результаты?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // если пользователь нажал кнопку да 
+            if (rsl == DialogResult.Yes)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
+                string filename = saveFileDialog1.FileName;
+                
+                string path = Path.GetDirectoryName(Application.ExecutablePath);
+
+                FileStream fs = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
+                BinaryWriter bw = new BinaryWriter(fs, Encoding.UTF8);
+
+                int length = quadrangle.Length;
+                bw.Write(length);
+
+                // Пишем данные
+                for(int i = 0; i < quadrangle.Length; i++)
+                {
+                    quadrangle[i].Write(bw);
+                }
+            
+                // Закрываем потоки
+                bw.Close();
+                fs.Close();
+                MessageBox.Show("Файл сохранен");
+                // выходим из приложения 
+                Application.Exit();
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+        
+        //Вывод всех данных о четырехугольниках 
+        private void btnShowAllQ_Click(object sender, EventArgs e)
+        {
+            richTextBoxQuadrangle.Text = null;
+            if(quadrangle != null)
+            {
+                for (int i = 0; i < quadrangle.Length; i++)
+                {
+                    richTextBoxQuadrangle.Text += quadrangle[i].ToString() + '\n';
+                }
+            }
+            else if(quadrangleFromFile != null)
+            {
+                for (int i = 0; i < quadrangleFromFile.Length; i++)
+                {
+                    richTextBoxQuadrangle.Text += quadrangleFromFile[i].ToString() + '\n';
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ошибка! Вы не ввели ни одной фигуры!");
+            }
+
+        }
+        
+        //Вывод всех данных о трапециях
+        private void btnShowAllT_Click(object sender, EventArgs e)
+        {
+            richTextBoxTrapeze.Text = null;
+            if(trapeze != null)
+            {
+                for (int i = 0; i < trapeze.Length; i++)
+                {
+                    richTextBoxTrapeze.Text += trapeze[i].ToString() + '\n';
+                }
+            }
+            else if(trapezeFromFile != null)
+            {
+                for (int i = 0; i < trapezeFromFile.Length; i++)
+                {
+                    richTextBoxTrapeze.Text += trapezeFromFile[i].ToString() + '\n';
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ошибка! Вы не ввели ни одной фигуры!");
+            }
+            
+        }
+        
+        //Сохранение в файл данных о трапециях и завершение работы 
+        private void BtnFinishT_Click(object sender, EventArgs e)
+        {
+            DialogResult rsl = MessageBox.Show("Сохранить результаты?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // если пользователь нажал кнопку да 
+            if (rsl == DialogResult.Yes)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
+                string filename = saveFileDialog1.FileName;
+
+                string path = Path.GetDirectoryName(Application.ExecutablePath);
+
+                FileStream fs = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
+                BinaryWriter bw = new BinaryWriter(fs, Encoding.UTF8);
+
+                int length = trapeze.Length;
+                bw.Write(length);
+
+                // Пишем данные
+                for (int i = 0; i < trapeze.Length; i++)
+                {
+                    trapeze[i].Write(bw);
+                }
+
+                // Закрываем потоки
+                bw.Close();
+                fs.Close();
+                MessageBox.Show("Файл сохранен");
+                // выходим из приложения 
+                Application.Exit();
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+        
+        //Открытие файла с данными о трапециях 
+        private void BtnOpenFileT_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+
+
+            // получаем выбранный файл
+            string filename = openFileDialog1.FileName;
+
+            FileStream fsR = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            // Создаем двоичный поток для чтения
+            BinaryReader br = new BinaryReader(fsR, Encoding.UTF8);
+
+            //Считываем длину массива и создаём новый массив объектов
+            int length = br.ReadInt32();
+
+            trapezeFromFile = new Trapeze[length];
+
+            //Вывод в текстовое поле информации о фигурах
+            richTextBoxQuadrangle.Text = "Кол-во фигур - " + length + "\n";
+            for (int i = 0; i < length; i++)
+            {
+                trapezeFromFile[i] = Trapeze.Read(br);
+                richTextBoxTrapeze.Text += trapezeFromFile[i].ToString() + "\n";
+            }
+
+            // Закрываем потоки
+            br.Close();
+            fsR.Close();
         }
     }
 }

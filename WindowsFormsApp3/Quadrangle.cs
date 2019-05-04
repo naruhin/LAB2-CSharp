@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,14 +52,14 @@ namespace WindowsFormsApp3
 
         public override string ToString()
         {
-            return this.Title + " \n A(" + this.X1 + ", " + this.Y1 + ")\n" +
-                " B(" + this.X2 + ", " + this.Y2 + ")\n" +
-                " C(" + this.X3 + ", " + this.Y3 + ")\n" +
-                " D(" + this.X4 + ", " + this.Y4 + ")\n\n" +
-                "Segments:\n AB = " + SegmentAB() + "\n BC = " + SegmentBC() +
-                "\n CD = " + SegmentCD() + "\n AD = " + SegmentAD() +
-                "\n\n Diagonals:\n AC = " + DiagonalAC() + "\n BD = " + DiagonalBD() +
-                "\n Perimetr = " + GetPerimetr() + "\n Square = " + GetSquare();
+           
+            return this.Title + "\t\tSegments: " + "\t\t Diagonals:" +
+                " \n A(" + this.X1 + ", " + this.Y1 + ")" + "\t\tAB = "  + Math.Round(SegmentAB()) + "\t\tAC = " + Math.Round(DiagonalAC(),3) +
+                " \n B(" + this.X2 + ", " + this.Y2 + ")" + "\t\tBC = " + Math.Round(SegmentBC()) + "\t\tBD = " + Math.Round(DiagonalBD(),3) +
+                " \n C(" + this.X3 + ", " + this.Y3 + ")" + "\t\tCD = " + Math.Round(SegmentCD()) + "\t\tPerimetr  = " + Math.Round(GetPerimetr(),3) +
+                " \n D(" + this.X4 + ", " + this.Y4 + ")" + "\t\tAD = " + Math.Round(SegmentAD()) + "\t\tSquare = " + Math.Round(GetSquare(),3) +
+                "\n-----------------------------------------------------------------------------------------------------------------------------";
+
         }
 
         //Поиск стороны AB
@@ -114,6 +115,35 @@ namespace WindowsFormsApp3
             double sin = Math.Sqrt(1 - Math.Pow(cos, 2));
             double square = ((DiagonalAC() * DiagonalBD()) / 2) * sin;
             return square;
+        }
+
+        public void Write(BinaryWriter bw)
+        {
+            // Все данные записываются по отдельности
+            bw.Write(Title);
+            bw.Write(X1);
+            bw.Write(X2);
+            bw.Write(X3);
+            bw.Write(X4);
+            bw.Write(Y1);
+            bw.Write(Y2);
+            bw.Write(Y3);
+            bw.Write(Y4);
+        }
+
+        public static Quadrangle Read(BinaryReader br)
+        {
+            Quadrangle q = new Quadrangle();
+            q.Title = br.ReadString();
+            q.X1 = br.ReadInt32();
+            q.X2 = br.ReadInt32();
+            q.X3 = br.ReadInt32();
+            q.X4 = br.ReadInt32();
+            q.Y1 = br.ReadInt32();
+            q.Y2 = br.ReadInt32();
+            q.Y3 = br.ReadInt32();
+            q.Y4 = br.ReadInt32();
+            return q;
         }
     }
 }
