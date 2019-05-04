@@ -34,8 +34,7 @@ namespace WindowsFormsApp3
             InitializeComponent();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
-            btnOpenFile.Click += BtnOpenFile_Click;
-            btnFinish.Click += BtnFinish_Click_1;
+           
            
         }
 
@@ -302,7 +301,7 @@ namespace WindowsFormsApp3
         }
 
         //Сохранение в файл данных о четырехуголниках и завершение работы 
-        private void BtnFinish_Click_1(object sender, EventArgs e)
+        private void BtnFinish_Click(object sender, EventArgs e)
         {
             DialogResult rsl = MessageBox.Show("Сохранить результаты?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -402,7 +401,7 @@ namespace WindowsFormsApp3
                     return;
                 string filename = saveFileDialog1.FileName;
 
-                string path = Path.GetDirectoryName(Application.ExecutablePath);
+                
 
                 FileStream fs = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
                 BinaryWriter bw = new BinaryWriter(fs, Encoding.UTF8);

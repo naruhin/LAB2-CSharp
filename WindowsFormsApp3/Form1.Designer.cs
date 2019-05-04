@@ -681,7 +681,7 @@
             this.btnFinish.TabIndex = 73;
             this.btnFinish.Text = "Закончить работу";
             this.btnFinish.UseVisualStyleBackColor = true;
-            this.btnFinish.Click += new System.EventHandler(this.BtnFinish_Click_1);
+            this.btnFinish.Click += new System.EventHandler(this.BtnFinish_Click);
             // 
             // btnShowAllQ
             // 
